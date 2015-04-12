@@ -1,6 +1,8 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.db.models.signals import post_save
+import get_Events
 
 # Create your models here.
 class Question(models.Model):
@@ -21,3 +23,13 @@ class Choice(models.Model):
 	votes = models.IntegerField(default=0)
 	def __str__(self):
 		return self.choice_text
+
+class Category(models.Model):
+	rank = models.IntegerField(default=0)
+	CId = models.CharField(max_length = 200)
+	short_name = models.CharField(max_length = 200)
+	events = models.CharField(max_length = 200)
+	def __str__(self):
+		return self.short_name
+
+	

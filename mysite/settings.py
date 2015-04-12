@@ -53,6 +53,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
+FIXTURE_DIRS = (
+   os.path.join(BASE_DIR, 'polls/fixtures/'),
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
