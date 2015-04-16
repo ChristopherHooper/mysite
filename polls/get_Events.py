@@ -7,7 +7,7 @@ def get_events(category_id):
 	print param
 	protocol = 'https'
 	hostName = 'www.eventbriteapi.com'
-	searchURI = '/v3/events/search/?categories='
+	searchURI = '/v3/events/search/?categories=' + category_id
 	token = "&token=BKKRDKVUVRC5WG4HAVLT"
 	searchCall = protocol +'://'+hostName+searchURI+param+token
 	rSearch = requests.get(searchCall)
