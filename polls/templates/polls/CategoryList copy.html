@@ -1,34 +1,38 @@
-<!--
+<table id="categories">
 <form action="events/" method="post">
-<form action="{% url 'polls:events' %}" method="get">
-<form action="{% url 'polls:events' %}" method="post">
--->
-<form action="{% url 'polls:events' %}" method="post">
-{% csrf_token %}
+<table id="categories">
 <h1>Select your first area of interest!</h1>
-<select name = "first">
+<select >
 	{% for car in category_list %}
-		<option id ="{{ car.CId }}" value="{{ car.CId }}">{{ car.short_name }}</option>
+		<option name = "first" id ="{{ car.cId }}" value="{{ car }}">{{ car.short_name }}</option>
 	{% endfor %}
 </select>
 
+</table>
+<table id="catagories">
 <h1>Select your second area of interest!</h1>
-<select  name = "second">
+<select >
 	{% for car in category_list %}
-		<option id ="{{ car.CId }}" value="{{ car.CId }}">{{ car.short_name }}</option>
+		<option name = "second" id ="{{ car.cId }}" value="{{ car }}">{{ car.short_name }}</option>
 	{% endfor %}
 </select>
 
+</table>
+
+</table>
+<table id="catagories">
 <h1>Select your third area of interest!</h1>
-<select name = "third">
+<select >
 	{% for car in category_list %}
-		<option  id="{{ car.CId }}" value="{{ car.CId }}">{{ car.short_name }}</option>
+		<option name = "third" id="{{ car.cId }}" value="{{ car }}">{{ car.short_name }}</option>
 	{% endfor %}
 </select>
 
-<h1>&nbsp;</h1>
+</table>
+<h1></h1>
 <input type="submit" value="Send!">
 </form>
+</table>
 <div class="pager">
    {% if has_previous %}
       <span class="page">

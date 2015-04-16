@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
@@ -6,9 +6,11 @@ from django.views import generic
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
-import get_Events
-from .models import Choice, Question, Category
-
+from .models import Choice, Question, Category, Events, Eve
+import pprint
+from django.core import serializers
+import json
+import prettyQuery
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -44,31 +46,35 @@ class CatagoryView(generic.ListView):
 	context_object_name = "category_list"
 	
 class EventsView(generic.ListView):
-	model = Category
+	model = Events
 	template_name = 'polls/eventsview.html'
-	def get_queryset(self):
-		return Question.objects.all
-def events(request, first, second, third):
-	p = get_object_or_404(Question, first, second, third)
-	try:
-		first = p.choice_set.get(pk=request.POST['first'])
-		second = p.choice_set.get(pk=request.POST['second'])
-		third = p.choice_set.get(pk=request.POST['second'])					
+	context_object_name = 'events_list'
+# 	def get_queryset(self):
+# 		return Question.objects.all
+
+class Error(generic.ListView):
+	model = Category
+	template_name = 'polls/error.html'
+	
+def events(request):
+# 	p = get_object_or_404(Category)
+	a = get_object_or_404(Category, CId=request.POST['first'])
+	b = get_object_or_404(Category, CId=request.POST['second'])
+	c = get_object_or_404(Category, CId=request.POST['third'])
+	try:			
+		Events.objects.all().delete()
+		a = Events(first = prettyQuery.prettyQuery(request.POST['first']), second = prettyQuery.prettyQuery(request.POST['second']), third = prettyQuery.prettyQuery(request.POST['third']))
+		a.save()
 	except (KeyError):
 		# Redisplay the question voting form.
-		return render(request, 'polls/category.html')
-
-	else:
-		first.events = get_Events.get_events
-		first.save()
-		second.events = get_Events.get_events
-		second.save()
-		third.events = get_Events.get_events
-		third.save()
+		return render(request, 'polls/error.html')
+		#return HttpResponseRedirect(reverse('polls:results', args=(first,)))
+#	else:
 	# Always return an HttpResponseRedirect after successfully dealing
 	# with POST data. This prevents data from being posted twice if a
 	# user hits the Back button.
-	return HttpResponseRedirect(reverse('polls:eventsview', first, second, third))
+# 	return HttpResponseRedirect(reverse('polls:eventsview', args=(first,)))
+	return HttpResponseRedirect(reverse('polls:eventsview', args=()))
         
 def vote(request, question_id):
     p = get_object_or_404(Question, pk=question_id)

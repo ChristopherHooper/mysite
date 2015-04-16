@@ -2,7 +2,6 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.db.models.signals import post_save
-import get_Events
 
 # Create your models here.
 class Question(models.Model):
@@ -25,11 +24,21 @@ class Choice(models.Model):
 		return self.choice_text
 
 class Category(models.Model):
-	rank = models.IntegerField(default=0)
 	CId = models.CharField(max_length = 200)
 	short_name = models.CharField(max_length = 200)
-	events = models.CharField(max_length = 200)
 	def __str__(self):
 		return self.short_name
+
+class Eve(models.Model):
+	category = models.ForeignKey(Category)
+	name = models.CharField(max_length=2000)
+	description = models.CharField(max_length=2000)
+	def __str__(self):
+		return self.name
+
+class Events(models.Model):
+	first = models.CharField(default="?", max_length = 2000)
+	second = models.CharField(default="?", max_length = 2000)
+	third = models.CharField(default="?", max_length = 2000)
 
 	
