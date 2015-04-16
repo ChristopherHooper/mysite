@@ -7,14 +7,20 @@ def get_events(category_id):
 	print param
 	protocol = 'https'
 	hostName = 'www.eventbriteapi.com'
-	searchURI = '/v3/events/search/?categories=' + category_id
+	searchURI = '/v3/events/search/?categories='
 	token = "&token=BKKRDKVUVRC5WG4HAVLT"
 	searchCall = protocol +'://'+hostName+searchURI+param+token
+	# I see where you concat'd the value here.  
 	rSearch = requests.get(searchCall)
 	rData = rSearch.json() 
 	array = []
 	i = 1
 	while (i<6):
+		
+		#-----------
+		# why hard coded 6 in above while? <<<<<<<<<<
+		#-------------------
+		
 		num = i*1000+int(category_id)
 		print num
 		if (rData['events'][i]["name"]):
