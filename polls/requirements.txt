@@ -1,0 +1,24 @@
+Due dates: Saturday 4/11, Wednesday 4/14 
+
+Specifications:
+-Separation of concerns / Code structure
+-Efficiency ( REALLY IMPORTANT )
+-Documentation / Readability
+-create a public Github repo
+-Create a working, complete, and well tested Django App  
+-presents a user with a set of categories (from Eventbrite API)
+-asks for the top 3 categories of events they’re interested in. 
+-Once they have selected their choices
+-use the Eventbrite API to gather relevant events and display them on a page. 
+-The results page should support pagination.
+-requirements.txt
+-README file that explains how I can get this running in my own local environment.
+
+Extra Credit: 
+-Unit test coverage.
+-URL of a working example somewhere on the web
+
+
+Notes:
+-You can find documentation of our API at http://developer.eventbrite.com/docs/getting-started/
+-The API Explorer is a great tool for getting to know our API’s endpoints.
