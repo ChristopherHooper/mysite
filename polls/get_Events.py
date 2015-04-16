@@ -15,7 +15,7 @@ def get_events(category_id):
 	rData = rSearch.json() 
 	array = []
 	i = 1
-	while (i<6):
+	for event in rData['events']
 		
 		#-----------
 		# why hard coded 6 in above while? <<<<<<<<<<
@@ -23,15 +23,15 @@ def get_events(category_id):
 		
 		num = i*1000+int(category_id)
 		print num
-		if (rData['events'][i]["name"]):
-			if (rData['events'][i]["description"]):
+		if (if "name" in event):
+			if ("description" in event):
 				record =  {
 					"model": "polls.Eve", 
 					"pk": num,
 					"fields": { 
 						"category" : category_id,
-						"name": rData['events'][i]["name"]["text"],
-						"description": rData['events'][i]["description"]["text"],
+						"name": event["name"]["text"],
+						"description": event["description"]["text"],
 				}}
 				array.append(record)
 		i += 1
