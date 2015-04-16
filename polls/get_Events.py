@@ -53,8 +53,8 @@ for i in range(len(rData['categories'])):
 		)
 	someV = get_events(rData['categories'][i]["id"])
 	dData += someV
-#filename = "/" + os.getcwd() + "/polls/fixtures/fixtures.json"
-filename = "/Users/Christopher/mysite/polls/fixtures/fixtures.json"
+filename = "/" + os.getcwd() + "/polls/fixtures/fixtures.json"
+#filename = "/Users/Christopher/mysite/polls/fixtures/fixtures.json"
 with open(filename, 'w') as outfile:
 	json.dump(dData, outfile)
 	
